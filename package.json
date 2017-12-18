@@ -10,6 +10,9 @@
     "worker-farm": "^1.5.2"
   },
   "jest": {
-    "runner": "./jest-selenium/runner.js"
+    "runner": "./src/index.js"
+  },
+  "scripts": {
+    "jest": "node_modules/.bin/jest"
   }
 }
