@@ -41,7 +41,7 @@ const run = ({ config, testPath, globalConfig }, workerCallback) => {
                 fullName: assertion.message,
                 numPassingAsserts: Boolean(assertion.failure) ? 1 : 0,
                 status: Boolean(assertion.failure) ? "failed" : "passed",
-                title: assertion.fullMsg
+                title: assertion.message
               };
             })
           );
