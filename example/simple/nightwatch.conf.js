@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-  "src_folders" : [path.resolve(__dirname, 'tests')],
+  "src_folders" : [],
   "output_folder" : "reports",
   "custom_commands_path" : "",
   "custom_assertions_path" : "",
