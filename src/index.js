@@ -19,6 +19,8 @@ module.exports = class NightwatchRunner {
 
   // eslint-disable-next-line
   runTests(tests, watcher, onStart, onResult, onFailure) {
+
+    debugger;
     const farm = workerFarm(
       {
         autoStart: true,
@@ -29,10 +31,14 @@ module.exports = class NightwatchRunner {
       TEST_WORKER_PATH,
     );
 
+    //throat - limit parallelism of concurrent functions to maxWorkers
     const mutex = throat(this._globalConfig.maxWorkers);
+    //pify — promisify callback function, worker is a promise
+    //worker normally is callback based, this makes it a promise
     const worker = pify(farm);
 
     const runTestInWorker = test =>
+      //mutex here is used to limit parallelism
       mutex(() => {
         if (watcher.isInterrupted()) {
           throw new CancelRun();
@@ -69,6 +75,11 @@ module.exports = class NightwatchRunner {
         }
       });
     });
+
+    //we can instanciate selenium here.
+    //and reuse it across workers
+    //by giving selenium handle to the worker,
+    //I guess
 
     const runAllTests = Promise.all(
       tests.map(test =>

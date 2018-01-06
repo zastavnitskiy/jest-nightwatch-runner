@@ -9,9 +9,6 @@
     "webdriver-manager": "^12.0.6",
     "worker-farm": "^1.5.2"
   },
-  "jest": {
-    "runner": "./src/index.js"
-  },
   "scripts": {
     "jest": "node_modules/.bin/jest"
   },
